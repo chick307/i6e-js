@@ -1,0 +1,50 @@
+{
+  "name": "@chick307/i6e",
+  "description": "Generic iterable wrapper for ES2015",
+  "version": "0.0.0",
+  "author": "chick307 <chick307@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/chick307/i6e-js/issues"
+  },
+  "dependencies": {
+    "power-assert": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-plugin-espower": "^2.0.0",
+    "babel-preset-es2015": "^6.1.18",
+    "eslint": "^1.10.3",
+    "mocha": "^2.3.4",
+    "power-assert": "^1.2.0",
+    "sinon": "^1.17.2"
+  },
+  "files": [
+    "README.md",
+    "index.js",
+    "lib",
+    "src"
+  ],
+  "homepage": "https://github.com/chick307/i6e-js#readme",
+  "jsnext:main": "src/i6e.js",
+  "keywords": [
+    "iterable",
+    "iterator"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "optionalDependencies": {
+    "babel-polyfill": "^6.3.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chick307/i6e-js.git"
+  },
+  "scripts": {
+    "clean": "rm -rf lib",
+    "lint": "eslint --env mocha src test",
+    "make": "babel --out-dir lib src",
+    "premake": "npm run lint && npm test",
+    "prepublish": "npm run clean && npm run make",
+    "test": "NODE_ENV=test babel-node node_modules/.bin/_mocha 'test/**/*-test.js'"
+  }
+}

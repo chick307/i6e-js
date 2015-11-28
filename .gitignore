@@ -1,0 +1,8 @@
+.*
+!.babelrc
+!.eslintrc.json
+!.gitignore
+*.log
+
+/lib
+/node_modules
