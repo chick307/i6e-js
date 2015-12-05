@@ -162,4 +162,15 @@ export class Iterable {
             }
         });
     }
+
+    filter(func, receiver) {
+        assert(utility.isFunction(func));
+        const self = this;
+        return new Iterable(function*() {
+            for (const x of self) {
+                if (func.call(receiver, x))
+                    yield x;
+            }
+        });
+    }
 }
