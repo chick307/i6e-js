@@ -600,4 +600,13 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [[1, 2], [3, 4]]);
         });
     });
+
+    describe('toSet method', () => {
+        it('returns an array', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3, 1, 2, 3]; });
+            const r = a.toSet();
+            assert(r instanceof Set);
+            assert.deepEqual(Array.from(r), [1, 2, 3]);
+        });
+    });
 });

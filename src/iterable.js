@@ -373,4 +373,8 @@ export class Iterable {
     toMap() {
         return new Map(this);
     }
+
+    toSet() {
+        return new Set(this);
+    }
 }
