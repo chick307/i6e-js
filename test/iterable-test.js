@@ -335,4 +335,18 @@ describe('Iterable class', () => {
             assert(spy.alwaysCalledOn(receiver));
         });
     });
+
+    describe('forEach method', () => {
+        it('iterates over passed generator', () => {
+            const receiver = {};
+            const spy = sinon.spy();
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            a.forEach(spy, receiver);
+            assert(spy.getCall(0).calledWithExactly(1));
+            assert(spy.getCall(1).calledWithExactly(2));
+            assert(spy.getCall(2).calledWithExactly(3));
+            assert(spy.callCount === 3);
+            assert(spy.alwaysCalledOn(receiver));
+        });
+    });
 });

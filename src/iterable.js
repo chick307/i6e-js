@@ -224,4 +224,10 @@ export class Iterable {
             v = func.call(receiver, v, x);
         return v;
     }
+
+    forEach(func, receiver) {
+        assert(utility.isFunction(func));
+        for (const x of this)
+            func.call(receiver, x);
+    }
 }
