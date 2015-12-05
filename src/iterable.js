@@ -298,4 +298,14 @@ export class Iterable {
                 yield* xs;
         });
     }
+
+    scan(defaultValue, func, receiver) {
+        assert(utility.isFunction(func));
+        const self = this;
+        return new Iterable(function*() {
+            let v = defaultValue;
+            for (const x of self)
+                yield v = func.call(receiver, v, x);
+        });
+    }
 }
