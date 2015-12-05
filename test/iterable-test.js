@@ -414,4 +414,19 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('lastIndexOf method', () => {
+        it('finds the value and returns the last index', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3, 1, 2, 3]; });
+            assert(a.lastIndexOf(2) === 4);
+        });
+
+        context('when the value is not found', () => {
+            it('returns -1', () => {
+                const a =
+                    new Iterable(function*() { yield* [1, 2, 3, 1, 2, 3]; });
+                assert(a.lastIndexOf(4) === -1);
+            });
+        });
+    });
 });

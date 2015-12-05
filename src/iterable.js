@@ -260,4 +260,15 @@ export class Iterable {
         for (x of this);
         return x;
     }
+
+    lastIndexOf(value) {
+        let n = -1;
+        let i = 0;
+        for (const x of this) {
+            if (x === value)
+                n = i;
+            i++;
+        }
+        return n;
+    }
 }
