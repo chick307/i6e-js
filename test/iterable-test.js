@@ -429,4 +429,20 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('map method', () => {
+        it('creates transformed iterator', () => {
+            const receiver = {};
+            const spy = sinon.spy((x) => x * x);
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.map(spy, receiver);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 4, 9]);
+            assert(spy.getCall(0).calledWithExactly(1));
+            assert(spy.getCall(1).calledWithExactly(2));
+            assert(spy.getCall(2).calledWithExactly(3));
+            assert(spy.callCount === 3);
+            assert(spy.alwaysCalledOn(receiver));
+        });
+    });
 });

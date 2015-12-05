@@ -271,4 +271,13 @@ export class Iterable {
         }
         return n;
     }
+
+    map(func, receiver) {
+        assert(utility.isFunction(func));
+        const self = this;
+        return new Iterable(function*() {
+            for (const x of self)
+                yield func.call(receiver, x);
+        });
+    }
 }
