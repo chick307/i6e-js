@@ -192,4 +192,10 @@ export class Iterable {
         }
         return -1;
     }
+
+    first(defaultValue) {
+        for (const x of this)
+            return x;
+        return defaultValue;
+    }
 }

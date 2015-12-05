@@ -273,4 +273,18 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('first method', () => {
+        it('returns first value', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            assert(a.first(4) === 1);
+        });
+
+        context('when empty', () => {
+            it('returns first argument', () => {
+                const a = new Iterable(function*() {});
+                assert(a.first(4) === 4);
+            });
+        });
+    });
 });
