@@ -125,4 +125,19 @@ export class Iterable {
             yield* xs;
         });
     }
+
+    dropWhile(func, receiver) {
+        assert(utility.isFunction(func));
+        const self = this;
+        return new Iterable(function*() {
+            const xs = self[Symbol.iterator]();
+            for (const x of xs) {
+                if (func.call(receiver, x))
+                    continue;
+                yield x;
+                break;
+            }
+            yield* xs;
+        });
+    }
 }

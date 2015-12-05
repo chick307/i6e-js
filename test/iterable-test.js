@@ -136,4 +136,19 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [3]);
         });
     });
+
+    describe('dropWhile method', () => {
+        it('creates dropped iterator', () => {
+            const receiver = {};
+            const spy = sinon.spy((x) => x < 2);
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.dropWhile(spy, receiver);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [2, 3]);
+            assert(spy.getCall(0).calledWithExactly(1));
+            assert(spy.getCall(1).calledWithExactly(2));
+            assert(spy.callCount === 2);
+            assert(spy.alwaysCalledOn(receiver));
+        });
+    });
 });
