@@ -89,4 +89,13 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('addFirst method', () => {
+        it('creates added iterator', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.addFirst(-2, -1, 0);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [-2, -1, 0, 1, 2, 3]);
+        });
+    });
 });

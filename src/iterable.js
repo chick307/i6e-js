@@ -71,4 +71,12 @@ export class Iterable {
             }
         };
     }
+
+    addFirst(...values) {
+        const self = this;
+        return new Iterable(function*() {
+            yield* values;
+            yield* self;
+        });
+    }
 }
