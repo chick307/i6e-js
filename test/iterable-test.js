@@ -127,4 +127,13 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [1, 2, 3, 4, [5], 6]);
         });
     });
+
+    describe('drop method', () => {
+        it('creates dropped iterator', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.drop(2);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [3]);
+        });
+    });
 });

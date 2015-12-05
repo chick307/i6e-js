@@ -115,4 +115,14 @@ export class Iterable {
                 yield* xs;
         });
     }
+
+    drop(count) {
+        assert(utility.isNumber(count));
+        const self = this;
+        return new Iterable(function*() {
+            const xs = self[Symbol.iterator]();
+            for (let i = 0; i < count && !xs.next().done; i++);
+            yield* xs;
+        });
+    }
 }
