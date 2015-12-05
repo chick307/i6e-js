@@ -140,4 +140,13 @@ export class Iterable {
             yield* xs;
         });
     }
+
+    every(func, receiver) {
+        assert(utility.isFunction(func));
+        for (const x of this) {
+            if (!func.call(receiver, x))
+                return false;
+        }
+        return true;
+    }
 }
