@@ -230,4 +230,12 @@ export class Iterable {
         for (const x of this)
             func.call(receiver, x);
     }
+
+    includes(value) {
+        for (const x of this) {
+            if (x === value)
+                return true;
+        }
+        return false;
+    }
 }

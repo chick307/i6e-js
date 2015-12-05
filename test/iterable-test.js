@@ -349,4 +349,20 @@ describe('Iterable class', () => {
             assert(spy.alwaysCalledOn(receiver));
         });
     });
+
+    describe('includes method', () => {
+        context('when iterator has the value', () => {
+            it('returns true', () => {
+                const a = new Iterable(function*() { yield* [1, 2, 3]; });
+                assert(a.includes(2) === true);
+            });
+        });
+
+        context('when iterator does not have the value', () => {
+            it('returns false', () => {
+                const a = new Iterable(function*() { yield* [1, 2, 3]; });
+                assert(a.includes(4) === false);
+            });
+        });
+    });
 });
