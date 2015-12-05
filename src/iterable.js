@@ -365,4 +365,8 @@ export class Iterable {
             }
         });
     }
+
+    toArray() {
+        return [...this];
+    }
 }

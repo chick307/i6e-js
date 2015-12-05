@@ -582,4 +582,13 @@ describe('Iterable class', () => {
             assert(spy.alwaysCalledOn(receiver));
         });
     });
+
+    describe('toArray method', () => {
+        it('returns an array', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.toArray();
+            assert(r instanceof Array);
+            assert.deepEqual(r, [1, 2, 3]);
+        });
+    });
 });
