@@ -181,4 +181,15 @@ export class Iterable {
                 return x;
         }
     }
+
+    findIndex(func, receiver) {
+        assert(utility.isFunction(func));
+        let i = 0;
+        for (const x of this) {
+            if (func.call(receiver, x))
+                return i;
+            i++;
+        }
+        return -1;
+    }
 }
