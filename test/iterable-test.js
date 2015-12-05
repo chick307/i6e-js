@@ -400,4 +400,18 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('last method', () => {
+        it('returns last value', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            assert(a.last(4) === 3);
+        });
+
+        context('when empty', () => {
+            it('returns first argument', () => {
+                const a = new Iterable(function*() {});
+                assert(a.last(4) === 4);
+            });
+        });
+    });
 });

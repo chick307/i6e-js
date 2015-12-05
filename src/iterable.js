@@ -254,4 +254,10 @@ export class Iterable {
             return false;
         return true;
     }
+
+    last(value) {
+        let x = value;
+        for (x of this);
+        return x;
+    }
 }
