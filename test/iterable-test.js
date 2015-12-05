@@ -491,4 +491,11 @@ describe('Iterable class', () => {
             assert(spy.alwaysCalledOn(receiver));
         });
     });
+
+    describe('size method', () => {
+        it('returns length', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            assert(a.size() === 3);
+        });
+    });
 });

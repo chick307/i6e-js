@@ -308,4 +308,11 @@ export class Iterable {
                 yield v = func.call(receiver, v, x);
         });
     }
+
+    size() {
+        let i = 0;
+        for (const _ of this)
+            i++;
+        return i;
+    }
 }
