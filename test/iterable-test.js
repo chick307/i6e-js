@@ -542,4 +542,13 @@ describe('Iterable class', () => {
             assert(spy.callCount === 1);
         });
     });
+
+    describe('take method', () => {
+        it('creates new iterator', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.take(2);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2]);
+        });
+    });
 });

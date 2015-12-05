@@ -329,4 +329,17 @@ export class Iterable {
         assert(utility.isFunction(func));
         return func.call(receiver, ...this);
     }
+
+    take(count) {
+        assert(utility.isNumber(count));
+        const self = this;
+        return new Iterable(function*() {
+            let n = 0;
+            for (const x of self) {
+                if (n++ >= count)
+                    break;
+                yield x;
+            }
+        });
+    }
 }
