@@ -87,4 +87,22 @@ export class Iterable {
             yield* values;
         });
     }
+
+    chunk(count) {
+        assert(isFinite(count));
+        const self = this;
+        return new Iterable(function*() {
+            const xs = self[Symbol.iterator]();
+            for (const x of xs) {
+                const c = [x];
+                for (let i = 1; i < count; i++) {
+                    const { done, value } = xs.next();
+                    if (done)
+                        break;
+                    c.push(value);
+                }
+                yield c;
+            }
+        });
+    }
 }
