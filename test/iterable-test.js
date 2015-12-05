@@ -445,4 +445,34 @@ describe('Iterable class', () => {
             assert(spy.alwaysCalledOn(receiver));
         });
     });
+
+    describe('repeat method', () => {
+        it('repeats the values passed times', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.repeat(3);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 3, 1, 2, 3, 1, 2, 3]);
+        });
+
+        it('returns empty when 0 passed', () => {
+            const spy = sinon.spy(() => 1);
+            const a = new Iterable(function*() { yield spy(); });
+            const r = a.repeat(0);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), []);
+            assert(spy.callCount === 0);
+        });
+
+        it('repeats the values infinitely', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.repeat();
+            assert(r instanceof Iterable);
+            const iter = r[Symbol.iterator]();
+            for (let i = 0; i < 0xFF; i++) {
+                assert.deepEqual(iter.next(), { done: false, value: 1 });
+                assert.deepEqual(iter.next(), { done: false, value: 2 });
+                assert.deepEqual(iter.next(), { done: false, value: 3 });
+            }
+        });
+    });
 });

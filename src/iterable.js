@@ -280,4 +280,22 @@ export class Iterable {
                 yield func.call(receiver, x);
         });
     }
+
+    repeat(count = Infinity) {
+        assert(utility.isNumber(count));
+        const self = this;
+        return new Iterable(function*() {
+            if (count < 1)
+                return;
+
+            const xs = [];
+            for (const x of self) {
+                yield x;
+                xs.push(x);
+            }
+
+            for (let i = 1; i < count; i++)
+                yield* xs;
+        });
+    }
 }
