@@ -15,6 +15,13 @@ export class Iterable {
         return new Iterable(function*() {});
     }
 
+    static from(iterable) {
+        assert(utility.isIterable(iterable));
+        return new Iterable(function*() {
+            yield* iterable;
+        });
+    }
+
     [Symbol.iterator]() {
         const g = this._generator;
         const i = g();
