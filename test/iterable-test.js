@@ -591,4 +591,13 @@ describe('Iterable class', () => {
             assert.deepEqual(r, [1, 2, 3]);
         });
     });
+
+    describe('toMap method', () => {
+        it('returns an array', () => {
+            const a = new Iterable(function*() { yield* [[1, 2], [3, 4]]; });
+            const r = a.toMap();
+            assert(r instanceof Map);
+            assert.deepEqual(Array.from(r), [[1, 2], [3, 4]]);
+        });
+    });
 });

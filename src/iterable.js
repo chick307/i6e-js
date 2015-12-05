@@ -369,4 +369,8 @@ export class Iterable {
     toArray() {
         return [...this];
     }
+
+    toMap() {
+        return new Map(this);
+    }
 }
