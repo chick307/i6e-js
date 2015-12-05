@@ -149,4 +149,17 @@ export class Iterable {
         }
         return true;
     }
+
+    fill(value, start = 0, end = Infinity) {
+        assert(utility.isNumber(start));
+        assert(utility.isNumber(end));
+        const self = this;
+        return new Iterable(function*() {
+            let i = 0;
+            for (const x of self) {
+                yield (start <= i && i < end) ? value : x;
+                i++;
+            }
+        });
+    }
 }

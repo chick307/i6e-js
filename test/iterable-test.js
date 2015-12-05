@@ -180,4 +180,27 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('fill', () => {
+        it('fills with value from start index to end index', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3, 4, 5]; });
+            const r = a.fill(0, 2, 4);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 0, 0, 5]);
+        });
+
+        it('fills with value from start index', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3, 4, 5]; });
+            const r = a.fill(0, 2);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 0, 0, 0]);
+        });
+
+        it('fills with value', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3, 4, 5]; });
+            const r = a.fill(0);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [0, 0, 0, 0, 0]);
+        });
+    });
 });
