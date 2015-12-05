@@ -173,4 +173,12 @@ export class Iterable {
             }
         });
     }
+
+    find(func, receiver) {
+        assert(utility.isFunction(func));
+        for (const x of this) {
+            if (func.call(receiver, x))
+                return x;
+        }
+    }
 }
