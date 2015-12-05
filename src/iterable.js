@@ -198,4 +198,13 @@ export class Iterable {
             return x;
         return defaultValue;
     }
+
+    flatMap(func, receiver) {
+        assert(utility.isFunction(func));
+        const self = this;
+        return new Iterable(function*() {
+            for (const x of self)
+                yield* utility.flatten(1, func.call(receiver, x));
+        });
+    }
 }
