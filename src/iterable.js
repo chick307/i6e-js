@@ -324,4 +324,9 @@ export class Iterable {
         }
         return false;
     }
+
+    spread(func, receiver) {
+        assert(utility.isFunction(func));
+        return func.call(receiver, ...this);
+    }
 }

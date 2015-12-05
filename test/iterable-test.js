@@ -529,4 +529,17 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('spread method', () => {
+        it('calls argument with generated values', () => {
+            const receiver = {};
+            const returnValue = {};
+            const spy = sinon.spy(() => returnValue);
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            assert(a.spread(spy, receiver) === returnValue);
+            assert(spy.getCall(0).calledWithExactly(1, 2, 3));
+            assert(spy.getCall(0).calledOn(receiver));
+            assert(spy.callCount === 1);
+        });
+    });
 });
