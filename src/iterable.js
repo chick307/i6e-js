@@ -216,4 +216,12 @@ export class Iterable {
                 yield* utility.flatten(depth, x);
         });
     }
+
+    fold(initialValue, func, receiver) {
+        assert(utility.isFunction(func));
+        let v = initialValue;
+        for (const x of this)
+            v = func.call(receiver, v, x);
+        return v;
+    }
 }

@@ -321,4 +321,18 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('fold method', () => {
+        it('fold values', () => {
+            const receiver = {};
+            const spy = sinon.spy((x, y) => x + y);
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            assert(a.fold(5, spy, receiver) === 11);
+            assert(spy.getCall(0).calledWithExactly(5, 1));
+            assert(spy.getCall(1).calledWithExactly(6, 2));
+            assert(spy.getCall(2).calledWithExactly(8, 3));
+            assert(spy.callCount === 3);
+            assert(spy.alwaysCalledOn(receiver));
+        });
+    });
 });
