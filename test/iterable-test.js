@@ -73,4 +73,20 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [0, -5, -10, -15]);
         });
     });
+
+    describe('zip static method', () => {
+        it('creates Iterable of array from iterables', () => {
+            const r = Iterable.zip([1, 2, 3], [4, 5, 6], [7, 8, 9]);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [[1, 4, 7], [2, 5, 8], [3, 6, 9]]);
+        });
+
+        context('when lengths of iterables are varying', () => {
+            it('fit to shortest one', () => {
+                const r = Iterable.zip([1, 2, 3], [4, 5], [6, 7, 8, 9]);
+                assert(r instanceof Iterable);
+                assert.deepEqual(Array.from(r), [[1, 4, 6], [2, 5, 7]]);
+            });
+        });
+    });
 });

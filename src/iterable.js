@@ -42,6 +42,19 @@ export class Iterable {
         });
     }
 
+    static zip(...values) {
+        assert(values.every(utility.isIterable));
+        return new Iterable(function*() {
+            const as = values.map((x) => x[Symbol.iterator]());
+            for (;;) {
+                const xs = as.map((a) => a.next());
+                if (xs.some((x) => x.done))
+                    return xs.map((x) => x.value);
+                yield xs.map((x) => x.value);
+            }
+        });
+    }
+
     [Symbol.iterator]() {
         const g = this._generator;
         const i = g();
