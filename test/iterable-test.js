@@ -303,4 +303,22 @@ describe('Iterable class', () => {
             assert(spy.alwaysCalledOn(receiver));
         });
     });
+
+    describe('flatten method', () => {
+        const values = [1, [2, [3], [4, [5]]], 6];
+
+        it('creates flat iterator', () => {
+            const a = new Iterable(function*() { yield* values; });
+            const r = a.flatten();
+            assert.deepEqual(Array.from(r), [1, 2, 3, 4, 5, 6]);
+        });
+
+        context('when passed depth', () => {
+            it('creates flat iterator', () => {
+                const a = new Iterable(function*() { yield* values; });
+                const r = a.flatten(2);
+                assert.deepEqual(Array.from(r), [1, 2, 3, 4, [5], 6]);
+            });
+        });
+    });
 });

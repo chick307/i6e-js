@@ -207,4 +207,13 @@ export class Iterable {
                 yield* utility.flatten(1, func.call(receiver, x));
         });
     }
+
+    flatten(depth = Infinity) {
+        assert(utility.isNumber(depth));
+        const self = this;
+        return new Iterable(function*() {
+            for (const x of self)
+                yield* utility.flatten(depth, x);
+        });
+    }
 }
