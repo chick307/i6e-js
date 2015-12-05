@@ -498,4 +498,35 @@ describe('Iterable class', () => {
             assert(a.size() === 3);
         });
     });
+
+    describe('some method', () => {
+        context('when some values meet the condition', () => {
+            it('returns true', () => {
+                const receiver = {};
+                const spy = sinon.spy((x) => x % 2 == 0);
+                const a = new Iterable(function*() { yield* [1, 2, 3]; });
+                const r = a.some(spy, receiver);
+                assert(r === true);
+                assert(spy.getCall(0).calledWithExactly(1));
+                assert(spy.getCall(1).calledWithExactly(2));
+                assert(spy.callCount === 2);
+                assert(spy.alwaysCalledOn(receiver));
+            });
+        });
+
+        context('when every values do not meet the condition', () => {
+            it('returns false', () => {
+                const receiver = {};
+                const spy = sinon.spy(() => false);
+                const a = new Iterable(function*() { yield* [1, 2, 3]; });
+                const r = a.some(spy, receiver);
+                assert(r === false);
+                assert(spy.getCall(0).calledWithExactly(1));
+                assert(spy.getCall(1).calledWithExactly(2));
+                assert(spy.getCall(2).calledWithExactly(3));
+                assert(spy.callCount === 3);
+                assert(spy.alwaysCalledOn(receiver));
+            });
+        });
+    });
 });

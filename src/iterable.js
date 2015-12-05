@@ -315,4 +315,13 @@ export class Iterable {
             i++;
         return i;
     }
+
+    some(func, receiver) {
+        assert(utility.isFunction(func));
+        for (const x of this) {
+            if (func.call(receiver, x))
+                return true;
+        }
+        return false;
+    }
 }
