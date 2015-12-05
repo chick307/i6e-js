@@ -238,4 +238,14 @@ export class Iterable {
         }
         return false;
     }
+
+    indexOf(value) {
+        let i = 0;
+        for (const x of this) {
+            if (x === value)
+                return i;
+            i++;
+        }
+        return -1;
+    }
 }

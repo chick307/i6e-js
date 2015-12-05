@@ -365,4 +365,18 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('indexOf method', () => {
+        it('finds the value and returns the index', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            assert(a.indexOf(2) === 1);
+        });
+
+        context('when the value is not found', () => {
+            it('returns -1', () => {
+                const a = new Iterable(function*() { yield* [1, 2, 3]; });
+                assert(a.indexOf(4) === -1);
+            });
+        });
+    });
 });
