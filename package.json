@@ -1,7 +1,7 @@
 {
   "name": "@chick307/i6e",
   "description": "Generic iterable wrapper for ES2015",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "chick307 <chick307@gmail.com>",
   "bugs": {
     "url": "https://github.com/chick307/i6e-js/issues"
