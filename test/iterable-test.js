@@ -116,4 +116,15 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [[1, 2], [3]]);
         });
     });
+
+    describe('concat method', () => {
+        it('creates concatenated iterator', () => {
+            const a = new Iterable(function*() { yield* [1, 2]; });
+            const b = new Iterable(function*() { yield* [3, 4]; });
+            const c = new Iterable(function*() { yield* [[5], 6]; });
+            const r = a.concat(b, c);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 3, 4, [5], 6]);
+        });
+    });
 });

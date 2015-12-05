@@ -105,4 +105,14 @@ export class Iterable {
             }
         });
     }
+
+    concat(...iterables) {
+        assert(iterables.every(utility.isIterable));
+        const self = this;
+        return new Iterable(function*() {
+            yield* self;
+            for (const xs of iterables)
+                yield* xs;
+        });
+    }
 }
