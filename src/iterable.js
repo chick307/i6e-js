@@ -79,4 +79,12 @@ export class Iterable {
             yield* self;
         });
     }
+
+    addLast(...values) {
+        const self = this;
+        return new Iterable(function*() {
+            yield* self;
+            yield* values;
+        });
+    }
 }

@@ -98,4 +98,13 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [-2, -1, 0, 1, 2, 3]);
         });
     });
+
+    describe('addLast method', () => {
+        it('creates added iterator', () => {
+            const a = new Iterable(function*() { yield* [1, 2, 3]; });
+            const r = a.addLast(4, 5, 6);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 3, 4, 5, 6]);
+        });
+    });
 });
