@@ -342,4 +342,16 @@ export class Iterable {
             }
         });
     }
+
+    takeWhile(func, receiver) {
+        assert(utility.isFunction(func));
+        const self = this;
+        return new Iterable(function*() {
+            for (const x of self) {
+                if (!func.call(receiver, x))
+                    break;
+                yield x;
+            }
+        });
+    }
 }
