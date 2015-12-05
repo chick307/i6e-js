@@ -28,6 +28,20 @@ export class Iterable {
         });
     }
 
+    static range(start, end, step) {
+        if (end == null) end = start, start = 0;
+        if (step == null) step = Math.sign(end - start);
+        assert(utility.isNumber(start));
+        assert(utility.isNumber(end));
+        assert(Math.sign(step) === Math.sign(end - start));
+        const m = (end - start) / step;
+        return new Iterable(function*() {
+            let n = 0;
+            while (n < m)
+                yield start + n++ * step;
+        });
+    }
+
     [Symbol.iterator]() {
         const g = this._generator;
         const i = g();

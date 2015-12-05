@@ -53,4 +53,24 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [1, 2, 3]);
         });
     });
+
+    describe('range static method', () => {
+        it('creates Iterable from end value', () => {
+            const r = Iterable.range(3);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [0, 1, 2]);
+        });
+
+        it('creates Iterable from start and end value', () => {
+            const r = Iterable.range(1, 5);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 3, 4]);
+        });
+
+        it('creates Iterable from start, end, and step value', () => {
+            const r = Iterable.range(0, -20, -5);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [0, -5, -10, -15]);
+        });
+    });
 });
