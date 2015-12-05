@@ -29,4 +29,12 @@ describe('Iterable class', () => {
             assert(x === n++);
         assert.deepEqual(i.next(), { done: true, value: undefined });
     });
+
+    describe('empty static method', () => {
+        it('creates Iterable from iterable', () => {
+            const r = Iterable.empty();
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), []);
+        });
+    });
 });

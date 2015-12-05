@@ -11,6 +11,10 @@ export class Iterable {
         this._generator = generator;
     }
 
+    static empty() {
+        return new Iterable(function*() {});
+    }
+
     [Symbol.iterator]() {
         const g = this._generator;
         const i = g();
