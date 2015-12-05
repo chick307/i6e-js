@@ -379,4 +379,25 @@ describe('Iterable class', () => {
             });
         });
     });
+
+    describe('isEmpty method', () => {
+        context('when isEmpty', () => {
+            it('returns true', () => {
+                const a = new Iterable(function*() {});
+                assert(a.isEmpty() === true);
+            });
+        });
+
+        context('when no isEmpty', () => {
+            it('returns false', () => {
+                const spy = sinon.spy();
+                const a = new Iterable(function*() {
+                    yield spy();
+                    yield spy();
+                });
+                assert(a.isEmpty() === false);
+                assert(spy.callCount === 1);
+            });
+        });
+    });
 });

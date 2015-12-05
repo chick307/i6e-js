@@ -248,4 +248,10 @@ export class Iterable {
         }
         return -1;
     }
+
+    isEmpty() {
+        for (const _ of this)
+            return false;
+        return true;
+    }
 }
