@@ -22,6 +22,12 @@ export class Iterable {
         });
     }
 
+    static of(...values) {
+        return new Iterable(function*() {
+            yield* values;
+        });
+    }
+
     [Symbol.iterator]() {
         const g = this._generator;
         const i = g();

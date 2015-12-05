@@ -45,4 +45,12 @@ describe('Iterable class', () => {
             assert.deepEqual(Array.from(r), [1, 2, 3]);
         });
     });
+
+    describe('of static method', () => {
+        it('creates Iterable from iterable', () => {
+            const r = Iterable.of(1, 2, 3);
+            assert(r instanceof Iterable);
+            assert.deepEqual(Array.from(r), [1, 2, 3]);
+        });
+    });
 });
