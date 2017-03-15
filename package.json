@@ -16,7 +16,7 @@
     "eslint": "^3.0.1",
     "mocha": "^3.0.0",
     "power-assert": "^1.2.0",
-    "sinon": "^1.17.2"
+    "sinon": "^2.0.0"
   },
   "files": [
     "README.md",
